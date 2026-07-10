@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torch-dcr"
+version = "0.1.0"
+description = "A fast implementation of the DCR (Distance to Clostest Record) for tabular data."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.0.0",
+    "pandas>=3.0.0",
+    "numpy>=2.4.0",
+    "tqdm>=4.0.0"
+]
+
+[tool.setuptools.packages.find]
+# This tells setuptools to automatically find your 'dcr' folder
+where = ["."]
+include = ["torch_dcr"]
+
+[tool.ruff]
+# Target Python 3.12 matching your VS Code environment
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+# Enable Pyflakes (E), Rules from Flake8 (F), and Isort import sorting (I)
+select = ["E", "F", "I"]
+fixable = ["ALL"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
