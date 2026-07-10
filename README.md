@@ -1,4 +1,6 @@
 # torch-dcr
+[![CI](https://github.com/DavideScassola/torch-dcr/actions/workflows/ci.yml/badge.svg)](https://github.com/DavideScassola/torch-dcr/actions/workflows/ci.yml)
+
 A library for efficiently computing DCR (Distance to Closest Record) of tabular data.
 
 To install the library in editable mode, run the following command:
@@ -7,7 +9,7 @@ python -m pip install -e .
 ```
 
 
-# Example usage
+## Example usage
 ```python
 import pandas as pd
 from torch_dcr import dcr
