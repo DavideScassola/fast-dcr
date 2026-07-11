@@ -1,4 +1,4 @@
-# torch-dcr
+# `torch-dcr`
 
 [![CI](https://github.com/DavideScassola/torch-dcr/actions/workflows/ci.yml/badge.svg)](https://github.com/DavideScassola/torch-dcr/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -110,3 +110,18 @@ With `k=2`, `dcr_1`/`dcr_2` are the distances to the 1st and 2nd closest records
 ## License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+
+## Citation
+
+If you use `torch-dcr` in your research or project, please cite it using the following bibtex entry:
+
+```bibtex
+@misc{torch_dcr_2026,
+  author       = {Davide Scassola},
+  title        = {torch-dcr: A fast implementation of the DCR (Distance to Closest Record) for tabular data},
+  year         = {2026},
+  publisher    = {GitHub},
+  journal      = {GitHub repository},
+  howpublished = {\url{[https://github.com/DavideScassola/torch-dcr](https://github.com/DavideScassola/torch-dcr)}}
+}

@@ -193,7 +193,11 @@ def dcr(
     if output_indexes:
         indices_matrix = torch.zeros((len(source_df), k), dtype=torch.int64).to(device)
 
-    for i in tqdm(range(0, len(source_df), batch_size), disable=not progress_bar):
+    for i in tqdm(
+        range(0, len(source_df), batch_size),
+        disable=not progress_bar,
+        desc="Computing DCR",
+    ):
         start = i
         end = min((i + 1) + batch_size, len(source_df))
 
