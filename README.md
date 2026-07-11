@@ -100,7 +100,7 @@ With `k=2`, `dcr_1`/`dcr_2` are the distances to the 1st and 2nd closest records
 | `metric` | `str` | `"cosine"` | Distance metric for continuous columns: `"cosine"`, `"euclidean"`, or `"l1"` |
 | `k` | `int` | `1` | Number of nearest neighbors to return per record |
 | `output_indexes` | `bool` | `False` | If `True`, also return a DataFrame of nearest-neighbor indexes |
-| `standardize` | `bool` | `False` | Standardize continuous columns before computing distances |
+| `standardize` | `bool` | `True` | Standardize continuous columns before computing distances |
 | `device` | `str` | `"cpu"` | `"cpu"` or `"cuda"` |
 | `batch_size` | `int` | 1000 | Batch size to limit memory usage on large datasets |
 | `progress_bar` | `bool` | `True` | If `True`, show a progress bar during computation |
