@@ -8,10 +8,13 @@ def hybrid_cosine_distance(x_real, x_cat, y_real, y_cat):
 
     Args:
         x_real (torch.Tensor): A tensor containing the continuous features of
-        the first set of records. x_cat (torch.Tensor): A tensor containing the
-        categorical features of the first set of records. y_real (torch.Tensor):
+        the first set of records.
+        x_cat (torch.Tensor): A tensor containing the
+        categorical features of the first set of records.
+        y_real (torch.Tensor):
         A tensor containing the continuous features of the second set of
-        records. y_cat (torch.Tensor): A tensor containing the categorical
+        records.
+        y_cat (torch.Tensor): A tensor containing the categorical
         features of the second set of records.
 
     Returns:
@@ -33,10 +36,13 @@ def hybrid_euclidean_distance(x_real, x_cat, y_real, y_cat):
 
     Args:
         x_real (torch.Tensor): A tensor containing the continuous features of
-        the first set of records. x_cat (torch.Tensor): A tensor containing the
-        categorical features of the first set of records. y_real (torch.Tensor):
+        the first set of records.
+        x_cat (torch.Tensor): A tensor containing the
+        categorical features of the first set of records.
+        y_real (torch.Tensor):
         A tensor containing the continuous features of the second set of
-        records. y_cat (torch.Tensor): A tensor containing the categorical
+        records.
+        y_cat (torch.Tensor): A tensor containing the categorical
         features of the second set of records.
 
     Returns:
@@ -53,10 +59,12 @@ def hybrid_l1_distance(x_real, x_cat, y_real, y_cat):
 
     Args:
         x_real (torch.Tensor): A tensor containing the continuous features of
-        the first set of records. x_cat (torch.Tensor): A tensor containing the
-        categorical features of the first set of records. y_real (torch.Tensor):
-        A tensor containing the continuous features of the second set of
-        records. y_cat (torch.Tensor): A tensor containing the categorical
+        the first set of records.
+        x_cat (torch.Tensor): A tensor containing the
+        categorical features of the first set of records.
+        y_real (torch.Tensor): A tensor containing the continuous features of
+        the second set of records.
+        y_cat (torch.Tensor): A tensor containing the categorical
         features of the second set of records.
 
     Returns:
@@ -78,6 +86,7 @@ DISTANCES = {
 def dcr(
     source_df: pd.DataFrame,
     target_df: pd.DataFrame,
+    *,
     k: int = 1,
     device: str = "cpu",
     standardize: bool = True,
@@ -86,7 +95,13 @@ def dcr(
     output_indexes: bool = False,
     progress_bar: bool = True,
 ) -> pd.DataFrame | tuple[pd.DataFrame, pd.DataFrame]:
-    """Computes the distance to the closest record (DCR) between two dataframes.
+    """Computes the distance to the closest record (DCR) between two dataframes,
+    having both continuous and categorical features.
+    Distances are computed using common distance metrics (cosine, euclidean, l1)
+    where categorical features are treated as one-hot encoded vectors.
+    This implementation saves memory by avoiding the instantiation of one-hot
+    encoded vectors and instead computes the distances directly from the
+    categorical codes.
 
     For each record in the source dataframe, it outputs the distances to the k
     closest records in the target dataframe. The output has the same number of
@@ -94,19 +109,26 @@ def dcr(
 
     Args:
         source_df (pd.DataFrame): The source dataframe containing the records
-        for which we want to compute the DCR. target_df (pd.DataFrame): The
-        target dataframe containing the records against which we want to compute
-        the DCR. k (int, optional): The number of closest records to consider.
-        Defaults to 1. device (str, optional): The device on which to perform
-        the computations. Defaults to "cpu". standardize (bool, optional):
+        for which we want to compute the DCR.
+        target_df (pd.DataFrame): The target dataframe containing the records
+        against which we want to compute the DCR.
+        k (int, optional): The number of closest records to consider.
+        Defaults to 1.
+        device (str, optional): The device on which to perform
+        the computations. Defaults to "cpu".
+        standardize (bool, optional):
         Whether to standardize the continuous features. The standardization is
         performed using the mean and standard deviation of the target dataset.
-        Defaults to True. batch_size (int, optional): The size of the batches
-        for processing. Defaults to 1000. metric (str, optional): The metric to
+        Defaults to True.
+        batch_size (int, optional): The size of the batches
+        for processing. Defaults to 1000.
+        metric (str, optional): The metric to
         use for computing distances. Options are "cosine", "euclidean" and "l1".
-        Defaults to "cosine". output_indexes (bool, optional): Whether to output
+        Defaults to "cosine".
+        output_indexes (bool, optional): Whether to output
         the indexes of the closest records. If true a tuple of (distances,
-        indexes) is returned. Defaults to False. progress_bar (bool, optional):
+        indexes) is returned. Defaults to False.
+        progress_bar (bool, optional):
         Whether to display a progress bar. Defaults to True.
 
     Returns:
